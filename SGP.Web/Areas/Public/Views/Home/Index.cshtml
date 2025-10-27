@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Our Products";
+}
+<style>
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+    .card-img-top {
+        height: 220px;
+        object-fit: cover;
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+    }
+</style>
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-primary">Our Handcrafted Products</h2>
+        <p class="text-muted">Each piece is made with love and creativity ✨</p>
+    </div>
+
+    <div class="row g-4">
+        @* Example of looping through products (use your model in production) *@
+        @for (int i = 1; i <= 6; i++)
+        {
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card border-0 shadow-sm h-100 product-card">
+                    <img src="~/assets/images/logo.png" class="card-img-top" alt="Product @i">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-semibold">Handmade Craft @i</h5>
+                        <p class="card-text text-muted small">Beautifully crafted using eco-friendly materials.</p>
+                        <div class="fw-bold text-primary mb-2">₹499</div>
+                        <a href="#" class="btn btn-outline-primary btn-sm rounded-pill px-3">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

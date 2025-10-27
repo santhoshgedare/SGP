@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Kavya’s Creations - @ViewData["Title"] </title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />  
+    <style>
+        body {
+            background: #ffffff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #0d6efd;
+        } 
+
+        a {
+            color: #0077cc;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #1b6ec2;
+            border-color: #1861ac;
+        }
+
+        .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+            color: #fff;
+            background-color: #1b6ec2;
+            border-color: #1861ac;
+        }
+
+      
+
+        .box-shadow {
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+        }
+
+        button.accept-policy {
+            font-size: 1rem;
+            line-height: inherit;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            white-space: nowrap;
+            line-height: 60px;
+            background-color:transparent;
+            pointer-events:none;
+        }
+
+    </style>
+</head>
+<body>
+ 
+    <div class="login-card ">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted py-3">
+        <div class="container d-flex justify-content-between align-items-center pt-3">
+            <span class="text-secondary fw-semibold">
+                &copy; @DateTime.Today.Year Kavya’s Creations
+            </span>
+            <span class="text-secondary small">
+                Powered by <strong class="text-dark">SGP Solutions</strong>
+            </span>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

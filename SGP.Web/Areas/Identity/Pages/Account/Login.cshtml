@@ -1,0 +1,56 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Kavya’s Creations";
+    Layout = "_UserLoginLayout"; // optional if you use a separate login layout
+}
+ 
+        <div class="text-center mb-4">
+    <img src="~/assets/images/logo.png" alt="Kavya’s Creations Logo"
+         class="mb-3" style="max-width: 150px; height: auto;" />
+            <p class="text-muted">Sign in to continue</p>
+        </div>
+
+        <form id="account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="name@example.com" />
+                <label asp-for="Input.Email">Email address</label>
+                <span asp-validation-for="Input.Email" class="text-danger small"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" type="password" class="form-control" autocomplete="current-password" placeholder="password" />
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger small"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                    <label class="form-check-label" asp-for="Input.RememberMe">
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+                <a id="forgot-password" asp-page="./ForgotPassword" class="small text-decoration-none text-primary">Forgot password?</a>
+            </div>
+
+            <div class="d-grid mb-3">
+                <button id="login-submit" type="submit" class="btn btn-primary btn-lg rounded-pill fw-semibold">Sign In</button>
+            </div>
+
+            <div class="text-center">
+                <p class="text-muted mb-1 small">
+                    Don’t have an account?
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-primary fw-semibold text-decoration-none">Register</a>
+                </p>
+                <p class="small mb-0">
+                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="text-secondary text-decoration-none">Resend email confirmation</a>
+                </p>
+            </div>
+        </form>
+ 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
