@@ -245,9 +245,6 @@ namespace SGP.Infrastructure.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsCurrent")
                         .HasColumnType("bit");
 
@@ -281,8 +278,6 @@ namespace SGP.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IsActive");
-
                     b.HasIndex("IsCurrent");
 
                     b.HasIndex("Name")
@@ -290,9 +285,11 @@ namespace SGP.Infrastructure.Migrations
 
                     b.HasIndex("ParentCategoryId");
 
+                    b.HasIndex("Status");
+
                     b.HasIndex("BaseId", "IsCurrent");
 
-                    b.ToTable("itemCategories");
+                    b.ToTable("ItemCategories");
                 });
 
             modelBuilder.Entity("SGP.Core.Entities.Items.ItemDiscount", b =>

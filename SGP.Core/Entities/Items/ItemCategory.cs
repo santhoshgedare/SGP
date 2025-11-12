@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SGP.Core.Enums;
+using SGP.Core.Interfaces;
 using SGP.Core.SharedKernel;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,19 @@ using System.Threading.Tasks;
 namespace SGP.Core.Entities.Items
 {
     [Index(nameof(Name), IsUnique = true)]
-    [Index(nameof(IsActive))]
+    [Index(nameof(Status))]
     [Index(nameof(IsCurrent))]
     [Index(nameof(BaseId), nameof(IsCurrent))]
     [Index(nameof(ParentCategoryId))]
-    public class ItemCategory : AggregateRoot
+    public class ItemCategory : AggregateRoot, IRevision
     {
         [Required, StringLength(100)]
         public string Name { get; private set; } = string.Empty;
 
         [StringLength(300)]
         public string? Description { get; private set; }
-
-        public bool IsActive { get; private set; } = true;
         public bool IsCurrent { get; private set; } = true;
-        public int RevisionNumber { get; private set; } = 1;
+        public int RevisionNumber { get; private set; } = 0;
         public long BaseId { get; private set; }
 
         public StatusEnum Status { get; private set; } = StatusEnum.Active;
@@ -43,6 +42,21 @@ namespace SGP.Core.Entities.Items
         public ICollection<Item> Items { get; private set; } = new List<Item>();
         private ItemCategory() { }
 
-      
+        public ItemCategory(string name, string? description, StatusEnum status, long? parentCategoryId)
+        {
+            Name = name;
+            Description = description;
+            Status = status;
+            ParentCategoryId = parentCategoryId;
+            IsCurrent = true;
+            RevisionNumber = RevisionNumber + 1;
+        }
+
+        public void SetBaseId(long baseId)
+        {
+            BaseId = baseId;
+        }
+
+
     }
 }

@@ -16,7 +16,14 @@ namespace SGP.Web.Areas.Public.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            { 
+                return View();
+            }
+            else
+            { 
+                return RedirectToPage("/Account/Login", new { area = "Identity" }); 
+            }
         }
 
         public IActionResult Privacy()
